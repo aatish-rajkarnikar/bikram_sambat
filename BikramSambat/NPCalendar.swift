@@ -8,8 +8,21 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class NPCalendar: UIViewController {
 
+    @IBOutlet weak var collectionView:UICollectionView!{
+        didSet{
+            collectionView.dataSource = self
+            let layout = NPCalendarFlowLayout()
+            layout.minimumInteritemSpacing = 0
+            layout.minimumLineSpacing = 0
+            let itemWidth = UIScreen.main.bounds.width / 7
+            layout.itemSize = CGSize(width: itemWidth, height: itemWidth)
+            collectionView.collectionViewLayout = layout
+            collectionView.isPagingEnabled = true
+        }
+    }
+    
     let numberOfDaysInNepaliMonth = [
         2000:[30,32,31,32,31,30,30,30,29,30,29,31],
         2001:[31,31,32,31,31,31,30,29,30,29,30,30],
@@ -106,21 +119,26 @@ class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        convertADToBS()
+        print(getCurrentMonth())
     }
     
-    func convertADToBS(){
+    func convertADToBS(date:Date)->NPDate{
         var nepaliYear = 2000
         var nepaliMonth = 9
         var nepaliDay = 17
-        
+        var weekDay = 7
+        let calendar = Calendar(identifier: .gregorian)
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd"
         let initialEnglishDate = dateFormatter.date(from: "1944-01-01")
         
+        var interval = DateComponents()
+        interval.day = 1
         
-        var numberOfDays = Date().days(from: initialEnglishDate!)
+        var numberOfDays = date.days(from: initialEnglishDate!)
+        var gregorianDate = initialEnglishDate!
         while numberOfDays != 0 {
+            gregorianDate = calendar.date(byAdding: interval, to: gregorianDate)!
             let daysInMonth = numberOfDaysInNepaliMonth[nepaliYear]![nepaliMonth - 1]
             nepaliDay = nepaliDay + 1
             if nepaliDay > daysInMonth {
@@ -132,14 +150,54 @@ class ViewController: UIViewController {
                 nepaliMonth = 1
             }
             
+            weekDay = weekDay + 1
+            if weekDay > 7 {
+                weekDay = 1
+            }
+            
             numberOfDays = numberOfDays - 1
         }
-        
-        print(nepaliYear)
-        print(nepaliMonth)
-        print(nepaliDay)
+        return NPDate(day: nepaliDay, month: nepaliMonth, year: nepaliYear, weekDay: Weekday(rawValue:weekDay)! , gregorianDate: gregorianDate)
+    }
+    
+    func getCurrentMonth()->[NPDate]{
+        var dates = [NPDate]()
+        let currentDate = convertADToBS(date: Date())
+        let calendar = Calendar(identifier: .gregorian)
+        let day1 = calendar.date(byAdding: .day, value: -currentDate.day, to: currentDate.gregorianDate)
+        var weekday = calendar.component(.weekday, from: day1!)
+        guard let numberOfDays = numberOfDaysInNepaliMonth[currentDate.year]?[currentDate.month - 1] else{return dates}
+        for i in 1...numberOfDays {
+            let gregorianDate = calendar.date(byAdding: .day, value: i, to: day1!)
+            let weekday = calendar.component(.weekday, from: gregorianDate!)
+            let date = NPDate(day: i, month: currentDate.month, year: currentDate.year, weekDay: Weekday(rawValue: weekday)!, gregorianDate: gregorianDate!)
+            dates.append(date)
+        }
+        return dates
     }
 
+}
+
+extension NPCalendar:UICollectionViewDataSource{
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        var year:Int = section/12
+        year = 2000 + year
+        return self.numberOfDaysInNepaliMonth[year]![section%12]
+    }
+    
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
+        return self.numberOfDaysInNepaliMonth.count * 12
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath) as! NPCalendarCell
+        cell.dateLabel.text = String(indexPath.row + 1)
+        return cell
+    }
+}
+
+class NPCalendarCell:UICollectionViewCell{
+    @IBOutlet weak var dateLabel:UILabel!
 }
 
 extension Date{

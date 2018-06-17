@@ -7,17 +7,23 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B091F0AD1DCC70D9003DD25D /* NPCalendarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B091F0AC1DCC70D9003DD25D /* NPCalendarView.swift */; };
+		B091F0AF1DCC7136003DD25D /* NPDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B091F0AE1DCC7136003DD25D /* NPDate.swift */; };
+		B091F0B11DCDF933003DD25D /* NPCalendarFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = B091F0B01DCDF933003DD25D /* NPCalendarFlowLayout.swift */; };
 		B0D40EA81DC5C63E00DFD3FA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0D40EA71DC5C63E00DFD3FA /* AppDelegate.swift */; };
-		B0D40EAA1DC5C63E00DFD3FA /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0D40EA91DC5C63E00DFD3FA /* ViewController.swift */; };
+		B0D40EAA1DC5C63E00DFD3FA /* NPCalendar.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0D40EA91DC5C63E00DFD3FA /* NPCalendar.swift */; };
 		B0D40EAD1DC5C63E00DFD3FA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B0D40EAB1DC5C63E00DFD3FA /* Main.storyboard */; };
 		B0D40EAF1DC5C63E00DFD3FA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B0D40EAE1DC5C63E00DFD3FA /* Assets.xcassets */; };
 		B0D40EB21DC5C63E00DFD3FA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B0D40EB01DC5C63E00DFD3FA /* LaunchScreen.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		B091F0AC1DCC70D9003DD25D /* NPCalendarView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NPCalendarView.swift; sourceTree = "<group>"; };
+		B091F0AE1DCC7136003DD25D /* NPDate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NPDate.swift; sourceTree = "<group>"; };
+		B091F0B01DCDF933003DD25D /* NPCalendarFlowLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NPCalendarFlowLayout.swift; sourceTree = "<group>"; };
 		B0D40EA41DC5C63D00DFD3FA /* BikramSambat.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BikramSambat.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B0D40EA71DC5C63E00DFD3FA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		B0D40EA91DC5C63E00DFD3FA /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		B0D40EA91DC5C63E00DFD3FA /* NPCalendar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NPCalendar.swift; sourceTree = "<group>"; };
 		B0D40EAC1DC5C63E00DFD3FA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		B0D40EAE1DC5C63E00DFD3FA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B0D40EB11DC5C63E00DFD3FA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -55,11 +61,14 @@
 			isa = PBXGroup;
 			children = (
 				B0D40EA71DC5C63E00DFD3FA /* AppDelegate.swift */,
-				B0D40EA91DC5C63E00DFD3FA /* ViewController.swift */,
+				B0D40EA91DC5C63E00DFD3FA /* NPCalendar.swift */,
 				B0D40EAB1DC5C63E00DFD3FA /* Main.storyboard */,
 				B0D40EAE1DC5C63E00DFD3FA /* Assets.xcassets */,
 				B0D40EB01DC5C63E00DFD3FA /* LaunchScreen.storyboard */,
 				B0D40EB31DC5C63E00DFD3FA /* Info.plist */,
+				B091F0AC1DCC70D9003DD25D /* NPCalendarView.swift */,
+				B091F0AE1DCC7136003DD25D /* NPDate.swift */,
+				B091F0B01DCDF933003DD25D /* NPCalendarFlowLayout.swift */,
 			);
 			path = BikramSambat;
 			sourceTree = "<group>";
@@ -137,8 +146,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B0D40EAA1DC5C63E00DFD3FA /* ViewController.swift in Sources */,
+				B0D40EAA1DC5C63E00DFD3FA /* NPCalendar.swift in Sources */,
+				B091F0AD1DCC70D9003DD25D /* NPCalendarView.swift in Sources */,
+				B091F0B11DCDF933003DD25D /* NPCalendarFlowLayout.swift in Sources */,
 				B0D40EA81DC5C63E00DFD3FA /* AppDelegate.swift in Sources */,
+				B091F0AF1DCC7136003DD25D /* NPDate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -302,6 +314,7 @@
 				B0D40EB81DC5C63E00DFD3FA /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
